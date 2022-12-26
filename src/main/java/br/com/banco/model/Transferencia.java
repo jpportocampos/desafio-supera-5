@@ -1,35 +1,39 @@
 package br.com.banco.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "transferencia")
 public class Transferencia {
-	@Column
 	private @Id @GeneratedValue Long id;
 	@Column(name = "data_transferencia")
-	private String dataTransferencia;
-	@Column
+	private LocalDateTime dataTransferencia;
 	private float valor;
-	@Column
 	private String tipo;
 	@Column(name = "nome_operador_transacao")
 	private String nomeOperadorTransacao;
-	@ManyToOne
-	@JoinColumn(name = "id_conta", nullable = false)
-	private Conta contaId;
+	@Column(name = "conta_id")
+	private Long contaId;
 
-	public String getDataTransferencia() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getDataTransferencia() {
 		return dataTransferencia;
 	}
 
-	public void setDataTransferencia(String dataTransferencia) {
+	public void setDataTransferencia(LocalDateTime dataTransferencia) {
 		this.dataTransferencia = dataTransferencia;
 	}
 
@@ -56,4 +60,5 @@ public class Transferencia {
 	public void setNomeOperadorTransacao(String nomeOperadorTransacao) {
 		this.nomeOperadorTransacao = nomeOperadorTransacao;
 	}
+
 }
